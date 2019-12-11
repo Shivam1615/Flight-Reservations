@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>My Reservations</title>
 </head>
 <body>
 	<%
@@ -29,43 +29,73 @@
 			//Get the selected radio button from the index.jsp
 			String entity = request.getParameter("command");
 			//Make a SELECT query from the table specified by the 'command' parameter at the index.jsp
-			String str = "SELECT * FROM ticket WHERE userid = " + "\'" + session.getAttribute("user")+ "\'";
+			String str = "SELECT seat_number, class, depart_time, arrive_time, total_fare, airline_id, flight_number, ticket_number FROM ticket JOIN trip USING (ticket_number) JOIN seat USING (seat_number,aircraft_id) JOIN flights USING (flight_number,airline_id,aircraft_id)WHERE userid=" + "\'" + session.getAttribute("user")+ "\'" + "AND depart_time > NOW()";
 			//Run the query against the database.
 			ResultSet result = stmt.executeQuery(str);
 			
 			//Make an HTML table to show the results in:
-			
-			out.print("<table>");
-
+			out.print("<table style=\"width:100%\">");
 			//make a row
 			out.print("<tr>");
-			//make a column
-			out.print("<td>");
-			//print out column header
-			out.print("userid");
-			out.print("</td>");
-			//make a column
-			out.print("<td>");
-			//depending on the radio button selection make a column header for Manufacturer if the beers table was selected and Address if the bars table was selected
 			
+			out.print("<th>");
+			out.print("seat_number");
+			out.print("</th>");
+			out.print("<th>");
+			out.print("class");
+			out.print("</th>");
+			out.print("<th>");
+			out.print("depart_time");
+			out.print("</th>");
+			out.print("<th>");
+			out.print("arrive_time");
+			out.print("</th>");
+			out.print("<th>");
+			out.print("total_fare");
+			out.print("</th>");
+			out.print("<th>");
+			out.print("airline_id");
+			out.print("</th>");
+			out.print("<th>");
+			out.print("flight_number");
+			out.print("</th>");
+			out.print("<th>");
 			out.print("ticket_number");
-			out.print("</td>");
+			out.print("</th>");
+			
 			out.print("</tr>");
 
 			//parse out the results
 			while (result.next()) {
-				//make a row
+				
 				out.print("<tr>");
-				//make a column
+		
 				out.print("<td>");
-				//Print out current bar or beer name:
-				out.print(result.getString("userid"));
+				out.print(result.getString("seat_number"));
 				out.print("</td>");
 				out.print("<td>");
-				//Print out current bar/beer additional info: Manf or Address
-				
+				out.print(result.getString("class"));
+				out.print("</td>");
+				out.print("<td>");
+				out.print(result.getString("depart_time"));
+				out.print("</td>");
+				out.print("<td>");
+				out.print(result.getString("arrive_time"));
+				out.print("</td>");
+				out.print("<td>");
+				out.print(result.getString("total_fare"));
+				out.print("</td>");
+				out.print("<td>");
+				out.print(result.getString("airline_id"));
+				out.print("</td>");
+				out.print("<td>");
+				out.print(result.getString("flight_number"));
+				out.print("</td>");
+				out.print("<td>");
 				out.print(result.getString("ticket_number"));
 				out.print("</td>");
+
+				
 				out.print("</tr>");
 
 			}

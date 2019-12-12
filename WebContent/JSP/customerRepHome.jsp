@@ -34,8 +34,8 @@
 			Arrival Date: <input type="datetime" name="arrivalDate" required><br>
 			Trip Type:
 			<select name="triptype">
-				<option value="oneway">One Way</option>
-				<option value="roundtrip">Round Trip</option>
+				<option value="one way">One Way</option>
+				<option value="round trip">Round Trip</option>
 			</select><br>
 			Class:
 			<select name="class">
@@ -46,17 +46,106 @@
 			<button>Search</button>
 		</form>
     <br>
-    <button href = "">Edit Flight Reservations</button>
+
+
+
+    <b>Edit/Remove Flight Reservations</b>
+      <form action = "" method="post">
+        UserID:
+        <input type = "text" name = "userid" required>
+        <br>
+        Ticket Number:
+        <input type = "text" name = "ticket_number" required>
+          <br>
+        <button>Remove Reservation</button>
+      </form>
+
     <br>
     <br>
-    <button href = ""> Add Information</button>
-    <button href = ""> Edit Information</button>
-    <button href = ""> Delete Information</button>
+
+
+    <b> Add Information</b>
+    <br>
+    <br>
+    <form action="" method="post">
+      <select name = "info">
+        <option value = "aircraft">Aircraft</option>
+        <option value = "airport">Airport</option>
+        <option value = "flight">Flight</option>
+      </select>
+      name:
+      <input type = "text" name = "info_name" required>
+      <button href = "">Add</button>
+    </form>
+    <br>
     <br>
 
 
+      <b> Edit Information</b>
+      <br>
+      <br>
+      <form action="" method="post">
+        <select name = "info">
+          <option value = "aircraft">Aircraft</option>
+          <option value = "airport">Airport</option>
+          <option value = "flight">Flight</option>
+        </select>
+        Name:
+
+        <input type = "text" name = "info_name" required>
+        <button href = "">Edit</button>
+      </form>
+      <br>
+      <br>
 
 
+        <b> Delete Information</b>
+        <br>
+        <br>
+        <form action="" method="post">
+          <select name = "info">
+            <option value = "aircraft">Aircraft</option>
+            <option value = "airport">Airport</option>
+            <option value = "flight">Flight</option>
+          </select>
+          Name of info to delete:
+          <input type = "text" name = "info_name" required>
+          <button href = "">Delete</button>
+        </form>
+        <br>
+        <br>
+
+
+  <br>
+
+    <b> Wait List for Passengers</b>
+    <br>
+    <br>
+      <form action="" method = "post">
+        Flight Number:
+        <select name = "Flight Number">
+          <option value = "1">1</option>
+          <option value = "2">2</option>
+        </select>
+        <br>
+        <br>
+        AirLine:
+        <br>
+        <select name = "Airline Numbers">
+          <option value = "airline1">airline1</option>
+          <option value = "airline2">airline2</option>
+        </select>
+        <br>
+        <br>
+        <button href = "">Enter</button>
+        <br>
+        <br>
+        List of passengers:
+        <select name = "Passengers">
+
+        </select>
+
+    </form>
 
 
 

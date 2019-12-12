@@ -19,7 +19,7 @@
 	    } else if (admin.next()) {
 	    	session.setAttribute("username", userid); // the username will be stored in the session
 	    	session.setAttribute("usertype", "admin");
-	        response.sendRedirect("");
+	        response.sendRedirect("admin.jsp");
 	    } else if (rep.next()) {
 	    	session.setAttribute("username", userid); // the username will be stored in the session
 	    	session.setAttribute("usertype", "rep");

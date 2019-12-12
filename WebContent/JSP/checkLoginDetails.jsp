@@ -15,19 +15,24 @@
 	    if (customer.next()) {
 	        session.setAttribute("username", userid); // the username will be stored in the session
 	        session.setAttribute("usertype", "customer");
+	        con.close();
 	        response.sendRedirect("home.jsp");
 	    } else if (admin.next()) {
 	    	session.setAttribute("username", userid); // the username will be stored in the session
 	    	session.setAttribute("usertype", "admin");
+	    	con.close();
 	        response.sendRedirect("admin.jsp");
 	    } else if (rep.next()) {
 	    	session.setAttribute("username", userid); // the username will be stored in the session
 	    	session.setAttribute("usertype", "rep");
+	    	con.close();
 	        response.sendRedirect("customerRepHome.jsp");
 	    } else {
 	        out.println("Invalid password <a href='../index.html'>try again</a>");
 	    }
+	    con.close();
     } catch (Exception e) {
+    	con.close();
     	out.println("Exception occured " + e);
     }
 %>

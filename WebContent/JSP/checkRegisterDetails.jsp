@@ -10,8 +10,10 @@
     String str = "INSERT INTO customer(userid, pwd) VALUES('" + userid + "','" + pwd + "')";
     try {
     	st.executeUpdate(str);
+    	con.close();
     	response.sendRedirect("successR.jsp");
     } catch (Exception e) {
+    	con.close();
     	out.println("User already exists <a href='../index.html'>try again</a>");
     }
 %>

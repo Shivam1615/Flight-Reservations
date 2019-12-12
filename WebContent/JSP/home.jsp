@@ -13,6 +13,9 @@
 		<title>Home Page</title>
 	</head>
 	<body>
+<%
+	if (session.getAttribute("home") != null) response.sendRedirect("logout.jsp?home=true");
+%>
 		<p><b>Welcome <%=session.getAttribute("username")%>
 		<a href='logout.jsp'>Log out</a></b></p>
 		Check your reservations

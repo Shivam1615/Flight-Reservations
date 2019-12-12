@@ -1,6 +1,7 @@
 <%@ page import ="java.sql.*" %>
 <% 
-	String departureAirport, arrivalAirport, triptype, arg;
+	String departureAirport, arrivalAirport, triptype, arg = null;
+	session.setAttribute("home", "true");
 	if (request.getParameter("sort") != null) {
 		session.removeAttribute("arg");
 		response.sendRedirect("getSearchData.jsp");
@@ -24,10 +25,11 @@
 		session.setAttribute("triptype", triptype);
 	}
 	try {
-		arg = session.getAttribute("arg").toString();
-	} catch (Exception e) {
 		arg = request.getParameter("arg");
-		session.setAttribute("arg", arg);
+		if (arg != null) session.setAttribute("arg", arg);
+		else arg = session.getAttribute("arg").toString();
+	} catch (Exception e) {
+		session.removeAttribute("arg");
 	}
 	
 	Class.forName("com.mysql.jdbc.Driver");
@@ -96,7 +98,7 @@
 			if (i >= 8) {
 				%>
 					<td style='text-align:center'>
-						<a href="reserveFlight.jsp?class=<%=i%>">
+						<a href="reserveFlight.jsp?class=<%=i%>&price=<%=rs.getString(i)%>&model=<%=rs.getString(7)%>&airline=<%=rs.getString(6)%>&flightno=<%=rs.getString(1)%>">
 							$<%=rs.getString(i)%>
 						</a>
 					</td>
@@ -107,4 +109,5 @@
 		out.print("</tr>");
     }
     out.print("</table>");
+    con.close();
 %>

@@ -4,6 +4,7 @@ if (request.getParameter("home") != null) {
 	session.removeAttribute("arrivalAirport");
 	session.removeAttribute("triptype");
 	session.removeAttribute("arg");
+	session.removeAttribute("home");
 	response.sendRedirect("home.jsp");
 } else {
 	session.invalidate();

@@ -6,6 +6,7 @@
 <%  } else {  %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import ="java.sql.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,9 +14,7 @@
       <title>Admin Page</title>
    </head>
    <body>
-   <b>Admin Page</b>
-   <a href="logout.jsp">logout</a><br><br>
-   Create Customer Representative
+   Create Customer Representative <a href='logout.jsp'>Log out</a>
    <form action="addRep.jsp" method="POST">
        Username: <input type="text" name="username"/> <br/>
        Password:<input type="password" name="password"/> <br/>
@@ -63,9 +62,23 @@
      </form>
      
      <br>
+<%
+	Class.forName("com.mysql.jdbc.Driver");
+	Connection con = DriverManager.getConnection("jdbc:mysql://cs336.cshgvolhkift.us-east-2.rds.amazonaws.com:3306/cs336Project","DhanushSG", "cs336project");
+	Statement st = con.createStatement();
+	ResultSet rs;
+%>
       Produce a list of all flights for a given airport
       <form action="checkFlights.jsp" method="POST">
-     	Name:<input type="text" name="month"/> <br/>
+     	Name:<select name="month">
+     		<%
+	      		rs = st.executeQuery("select * from airlines");
+	      		while(rs.next()) {
+	      			out.print("<option>" + rs.getString(1) + "</option>");
+	      		}
+	      		con.close();
+	      	%>
+     	</select> <br/>
        <input type="Submit" value="GET"/>
      </form>
      <br> 

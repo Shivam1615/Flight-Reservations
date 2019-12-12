@@ -51,7 +51,8 @@
     
     if (count == 0) {
     	%></form><%
-    	out.println("<br>There are no available seats for this flights <a href='getSearchData.jsp'>go back</a>");
+    	out.println("<br>There are no available seats for this flights <a href='getSearchData.jsp'>go back</a><br>");
+    	%><a href="addToWaitlist.jsp?val=TRUE&flight_number=<%=flightno%>&airline_id=<%=airline%>">Add me to waitlist for this flight</a><%
     }
     else {
     	out.print("<br><br>Meal ('N/A' for no meals): <input type='text' name='meal' required><br><br>");

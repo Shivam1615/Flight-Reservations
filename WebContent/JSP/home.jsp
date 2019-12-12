@@ -6,6 +6,7 @@
 <%	} else {  %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ page import ="java.sql.*" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -24,15 +25,26 @@
 		<form action="getSearchData.jsp" method="post">
 			Departure Airport:
 			<select name="departureAirport">
-				<option value="airport1">Airport 1</option>
-				<option value="airport2">Airport 2</option>
-				<option value="airport3">Airport 3</option>
+				<%
+					Class.forName("com.mysql.jdbc.Driver");
+					Connection con = DriverManager.getConnection("jdbc:mysql://cs336.cshgvolhkift.us-east-2.rds.amazonaws.com:3306/cs336Project","DhanushSG", "cs336project");
+					Statement st = con.createStatement();
+					ResultSet rs;
+		      		rs = st.executeQuery("select * from airports");
+		      		while(rs.next()) {
+		      			out.print("<option>" + rs.getString(1) + "</option>");
+		      		}
+		      		rs = st.executeQuery("select * from airports");
+	      		%>
 			</select><br>
 			Arrival Airport:
 			<select name="arrivalAirport">
-				<option value="airport1">Airport 1</option>
-				<option value="airport2">Airport 2</option>
-				<option value="airport3">Airport 3</option>
+				<%
+		      		while(rs.next()) {
+		      			out.print("<option>" + rs.getString(1) + "</option>");
+		      		}
+		      		con.close();
+	      		%>
 			</select><br>
 			Trip Type:
 			<select name="triptype">
@@ -41,6 +53,9 @@
 			</select><br><br>
 			<button>Search</button>
 		</form>
+		<%
+			if (request.getParameter("message") != null) out.println("<br><br>" + request.getParameter("message"));
+		%>
 	</body>
 </html>
 <%

@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Check Reservations</title>
 </head>
 <body>
 	<%
@@ -19,6 +19,8 @@
 			//Connection con = db.getConnection();		
 			String name = request.getParameter("name");
 			String type = request.getParameter("type");
+			
+			System.out.println(type);
 			
 			String url = "jdbc:mysql://cs336.cshgvolhkift.us-east-2.rds.amazonaws.com:3306/cs336Project";
 			

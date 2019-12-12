@@ -5,6 +5,7 @@ if (request.getParameter("home") != null) {
 	session.removeAttribute("triptype");
 	session.removeAttribute("arg");
 	session.removeAttribute("home");
+	session.removeAttribute("message");
 	response.sendRedirect("home.jsp");
 } else {
 	session.invalidate();

@@ -31,7 +31,7 @@
     	st.executeUpdate("INSERT INTO trip VALUES('" + meal + "', '" + ticketno + "', '" + seatno + "', '" + model + "', '" + airline + "', '" + flightno + "')");
     	out.print("Flight was reserved successfully... <a href='home.jsp'>Go home</a>");
     } catch (Exception e) {
-    	out.print("Flight could not be reserved... <a href='home.jsp'>Go home</a>");
+    	out.print("Flight could not be reserved... <a href='home.jsp'>Go home</a><br>");
     }
     con.close();
 	

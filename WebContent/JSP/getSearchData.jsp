@@ -43,6 +43,7 @@
     if (modelFilter != null && modelFilter.equals("null")) modelFilter = null;
     query+="from flights ";
     query+="where departure_id = '" + departureAirport + "' ";
+    query+="and depart_time > now() ";
     query+="and destination_id = '" + arrivalAirport + "' ";
     query+="and flight_type = '" + triptype + "' ";
     if (airlineFilter != null) query+="and airline_id = '" + airlineFilter + "' ";
